@@ -187,27 +187,28 @@ renderTable(sorted,rows.length);
 }
 
 function renderStats(sorted,total){
-const topCourse = sorted[0];
+// Filter out "OTHER" to get actual top course offered by MVGFC
+const topCourse = sorted.find(c => c[0] !== 'OTHER') || sorted[0];
 document.getElementById("statsCards").innerHTML=`
 <div class="stat-card">
     <div class="stat-icon">👥</div>
     <div class="stat-number">${total}</div>
-    <div class="stat-label">Total Incoming Students</div>
+    <div class="stat-label">Total Leads</div>
 </div>
 <div class="stat-card">
     <div class="stat-icon">🎓</div>
-    <div class="stat-number">${sorted.length}</div>
-    <div class="stat-label">Available Course Programs</div>
+    <div class="stat-number">5</div>
+    <div class="stat-label">Number of Courses Offered by MVGFC</div>
 </div>
 <div class="stat-card">
     <div class="stat-icon">🏆</div>
     <div class="stat-number">${topCourse[1]}</div>
-    <div class="stat-label">Students in ${topCourse[0]}</div>
+    <div class="stat-label">Most Leads Pick: ${topCourse[0]}</div>
 </div>
 <div class="stat-card">
     <div class="stat-icon">📊</div>
     <div class="stat-number">${((topCourse[1]/total)*100).toFixed(1)}%</div>
-    <div class="stat-label">Most Popular Course Share</div>
+    <div class="stat-label">% of Leads That Pick Top Course Offered</div>
 </div>`;
 }
 
